@@ -21,6 +21,17 @@ const getGreetingFromBackend = async () => {
   return { greeting :"Could not get greeting from backend"};
 };
 
+const getChatsFromBackend = async () => {
+  try {
+    const url = `${baseURL}/api/chats`
+    console.log("Getting chats from "+url)
+    const response = await fetch(url);
+    return response.json()
+  } catch (error) {
+    console.error(error);
+  }
+  return {results: []};
+};
 
 const BackendGreeting = (props) => (
   <div><p>Backend says: {props.greeting}</p></div>
@@ -33,18 +44,24 @@ class App extends Component {
     super(props);
     this.state = {
       greeting: "",
+      chats: [],
     };
   }
 
   async componentWillMount() {
-    const response = await getGreetingFromBackend();
-    this.setState({greeting: response.greeting});
+    // const response = await getGreetingFromBackend();
+    // this.setState({greeting: response.greeting});
+    const response = await getChatsFromBackend();
+    this.setState({chats: response.results});
   }
 
   render() {
 
+    // return (
+    //   <BackendGreeting greeting={this.state.greeting} />
+    // );
     return (
-      <BackendGreeting greeting={this.state.greeting} />
+      <div>{JSON.stringify(this.state.chats)}</div>
     );
   }
 }
