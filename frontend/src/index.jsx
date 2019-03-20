@@ -63,7 +63,7 @@ class App extends Component {
     // );
     return (
       // <div>{JSON.stringify(this.state.chats)}</div>
-      <BackendGreeting greeting={this.state.greeting} />
+      
      <table>
        <tr>
          <th>Aikaleima</th>
