@@ -61,7 +61,15 @@ class App extends Component {
     //   <BackendGreeting greeting={this.state.greeting} />
     // );
     return (
-      <div>{JSON.stringify(this.state.chats)}</div>
+      // <div>{JSON.stringify(this.state.chats)}</div>
+      <ol>
+        {this.state.chats.map(chat =>
+          <li key={chat.id}>
+            <h1>{chat.createdAt}</h1>
+            <p>{chat.message}</p>
+          </li>
+        )}
+      </ol>
     );
   }
 }
